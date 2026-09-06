@@ -1,0 +1,28 @@
+{
+  "name": "base-racing-league",
+  "version": "1.0.0",
+  "description": "18-week NFT racing league on Base network",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && node --watch index.js",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "test": "npm run test:contracts",
+    "test:contracts": "cd contracts && npx hardhat test",
+    "deploy:testnet": "cd contracts && npx hardhat run scripts/deploy.js --network baseSepolia",
+    "deploy:mainnet": "cd contracts && npx hardhat run scripts/deploy.js --network baseMainnet",
+    "verify": "cd contracts && npx hardhat verify"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "workspaces": [
+    "client",
+    "server",
+    "contracts"
+  ]
+}
