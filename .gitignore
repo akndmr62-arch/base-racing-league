@@ -1,39 +1,12 @@
-# Dependencies
-node_modules/
-/.pnp
-.pnp.js
-
-# Testing
-/coverage
-
-# Production
-/build
-/dist
-
-# Environment variables
-.env
 .env.local
-.env.*.local
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+node_modules/
+dist/
+build/
+.hardhat/
+artifacts/
+cache/
 .DS_Store
-
-# Logs
-logs/
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Contracts
-contracts/artifacts/
-contracts/cache/
-
-# OS
-.DS_Store
-Thumbs.db
+.env
+.env*.local
+private_key.txt

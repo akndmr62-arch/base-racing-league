@@ -1,94 +1,50 @@
-# Base Racing League 🏎️⚡
+# Base Racing League
 
-18-week NFT racing league on Base network with smart contracts, real-time gameplay, and 1000 USDC prize pool.
+🏁 An 18-week NFT racing championship on Base network
 
-## 🎮 Game Overview
+## Overview
 
-- **114 NFT Holders** compete weekly
-- **18-week season** with points accumulation
-- **Boost Mechanics**: 2 random timing windows per race
-- **Wind Events**: Random advantage for 5 NFT holders
-- **Premier League Format**: Final rankings determine prize distribution
-- **Prize Pool**: 1000 USDC split among top 5
+Base Racing League is a blockchain-based racing game where 114 unique NFTs compete in weekly races. NFTs are ranked on an on-chain leaderboard, with top performers earning USDC rewards.
 
-## 🏆 Prize Distribution (Season End)
+### Key Features
 
-- 1st Place: 400 USDC
-- 2nd Place: 250 USDC
-- 3rd Place: 150 USDC
-- 4th Place: 100 USDC
-- 5th Place: 100 USDC
+- **114 NFT Participants**: CryptoBullkt collection
+- **18-Week Season**: Weekly races with cumulative scoring
+- **Real-time Leaderboard**: NFT-centric rankings updated after each race
+- **Prize Pool**: 1000 USDC distributed to top 5 NFTs
+- **On-Chain Results**: All race data stored on Base blockchain
+- **3D Racing UI**: Interactive Three.js visualization
+- **Ownership-Independent**: NFTs race regardless of current owner
 
-## 🛠️ Tech Stack
+## Architecture
 
 ### Frontend
-- React 18 + TypeScript + Vite
-- Three.js for 3D animation
-- Socket.io for real-time updates
+- React 18 + TypeScript
+- Three.js for 3D racing visualization
 - Wagmi + RainbowKit for wallet connection
+- Socket.io for real-time updates
 - TailwindCSS for styling
 
 ### Backend
 - Node.js + Express
-- PostgreSQL for persistent storage
-- Redis for session management
-- Socket.io for WebSocket communication
-- Ethers.js for blockchain interaction
+- PostgreSQL for race history
+- Redis for session caching
+- Socket.io for WebSocket orchestration
+- Ethers.js for blockchain integration
 
 ### Smart Contracts
-- Solidity (ERC721 integration)
-- Hardhat for development
-- Base Mainnet deployment
+- LeagueLeaderboard.sol: Manages rankings and race results
+- PrizeDistribution.sol: Handles USDC prize claims
+- Built with OpenZeppelin contracts
+- Deployed on Base mainnet
 
-## 📁 Project Structure
-
-```
-base-racing-league/
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── pages/         # Page components
-│   │   ├── hooks/         # Custom hooks
-│   │   ├── store/         # Zustand stores
-│   │   ├── lib/           # Utility functions
-│   │   └── styles/        # TailwindCSS
-│   ├── index.html
-│   ├── vite.config.ts
-│   └── package.json
-│
-├── server/                 # Node.js backend
-│   ├── src/
-│   │   ├── routes/        # API routes
-│   │   ├── services/      # Business logic
-│   │   ├── models/        # Database models
-│   │   ├── middleware/    # Express middleware
-│   │   ├── utils/         # Utilities
-│   │   └── types/         # TypeScript types
-│   ├── index.js
-│   └── package.json
-│
-├── contracts/             # Smart contracts
-│   ├── contracts/
-│   │   ├── LeagueRacer.sol
-│   │   ├── LeagueLeaderboard.sol
-│   │   └── PrizeDistribution.sol
-│   ├── test/
-│   ├── scripts/
-│   ├── hardhat.config.js
-│   └── package.json
-│
-├── docs/                  # Documentation
-├── package.json           # Root workspace
-└── README.md
-```
-
-## 🚀 Getting Started
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+
-- npm or yarn
 - PostgreSQL
 - Redis
+- Base RPC endpoint (Alchemy)
 
 ### Installation
 
@@ -97,79 +53,116 @@ base-racing-league/
 git clone https://github.com/akndmr62-arch/base-racing-league.git
 cd base-racing-league
 
-# Install dependencies (all workspaces)
+# Install dependencies
 npm install
 
-# Copy environment file
+# Setup environment
 cp .env.example .env
-# Edit .env with your configuration
+# Edit .env with your values
 
-# Setup database
-cd server && npm run db:migrate
-
-# Start development servers
-npm run dev
+# Database setup
+npm run db:migrate
+npm run db:seed
 ```
 
-### Development
+### Running
 
 ```bash
-# Start frontend only
-npm run dev:client
+# Development
+npm run dev
 
-# Start backend only
-npm run dev:server
+# Production
+npm run build && npm start
+```
 
-# Run contract tests
-npm run test:contracts
+## Smart Contract Deployment
 
-# Deploy to Base Sepolia (testnet)
-npm run deploy:testnet
+```bash
+cd contracts
+
+# Compile
+npm run compile
+
+# Test
+npm run test
+
+# Deploy to Base Sepolia
+npm run deploy:sepolia
 
 # Deploy to Base Mainnet
 npm run deploy:mainnet
 ```
 
-## 📊 Database Schema
+## Game Rules
 
-See `/docs/database-schema.sql` for complete schema.
+### Race Duration
+- 3 minutes (180 seconds) per race
+- All 114 NFTs participate automatically
 
-Key tables:
-- `seasons` - League seasons
-- `races` - Weekly races
-- `race_results` - Individual race results
-- `leaderboard` - Live rankings
-- `prize_claims` - Prize withdrawals
+### Scoring
+- 1st Place: 25 points
+- 2nd Place: 18 points
+- 3rd Place: 15 points
+- ...
+- 10th+ Place: 4 points
 
-## 🔐 Security
+### Mechanics
+- **Boost Events**: Random timing, temporary speed increase
+- **Wind Events**: Affects 5 random NFTs, provides speed bonus
+- **Season Ranking**: Cumulative points across 18 weeks
 
-- Off-chain NFT ownership verification
-- Server-side boost timing randomness
-- Session token authentication
-- Rate limiting on API
-- Contract verification on Basescan
+### Prizes
+- 1st: 400 USDC (40%)
+- 2nd: 250 USDC (25%)
+- 3rd: 150 USDC (15%)
+- 4th: 100 USDC (10%)
+- 5th: 100 USDC (10%)
 
-## 📝 Documentation
+## Database Schema
 
-- [Database Schema](./docs/database-schema.sql)
-- [API Documentation](./docs/API.md)
-- [Smart Contract Guide](./docs/CONTRACTS.md)
-- [How to Play](./docs/HOW_TO_PLAY.md)
+### Core Tables
+- `seasons`: Season metadata
+- `nfts`: NFT entities (primary)
+- `nft_season_stats`: Per-season NFT statistics
+- `races`: Weekly race information
+- `race_results`: Individual race outcomes
+- `leaderboard`: Cached rankings
+- `prize_claims`: Prize distribution tracking
 
-## 📈 Roadmap
+## API Endpoints
 
-- [x] Project setup
-- [ ] Week 1: Backend foundation
-- [ ] Week 2: Frontend + 3D animation
-- [ ] Week 3: Real-time integration
-- [ ] Week 4-5: Smart contracts
-- [ ] Week 6-7: Contract integration
-- [ ] Week 8: Launch prep
+### Authentication
+- `POST /api/auth/login`: Generate session token
+- `POST /api/auth/verify`: Verify session
+- `POST /api/auth/logout`: End session
 
-## 🤝 Contributing
+### Game Data
+- `GET /api/seasons/current`: Active season info
+- `GET /api/leaderboard/current`: Live leaderboard
+- `GET /api/races/current`: Current race details
 
-This is a private project. For issues or questions, contact the team.
+## WebSocket Events
 
-## 📄 License
+- `race:join`: Player joins race
+- `race:start`: Race begins
+- `race:boost-available`: Boost ready
+- `race:boost-pressed`: Player uses boost
+- `race:wind-event`: Wind effect activated
+- `race:finish`: Race completed
+- `race:result`: Final rankings
+
+## Security
+
+- NFT ownership verification via blockchain
+- Session tokens with 24-hour expiry
+- ReentrancyGuard on prize distribution
+- Rate limiting on API endpoints
+- Private key management via environment variables
+
+## License
 
 MIT
+
+## Support
+
+For issues or questions, please open a GitHub issue.
